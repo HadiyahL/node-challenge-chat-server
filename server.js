@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const port = 3000;
+// const port = 3000;
 app.use(cors());
 
 app.use(bodyParser.json()); // before our routes definition
@@ -125,5 +125,7 @@ app.delete("/messages/:id", function (request, response) {
   response.json(messages);
 });
 
-app.listen(port);
-console.log("Port listening");
+const listener = app.listen(process.env.PORT, function () {
+  console.log("Your app is listening on port " + listener.address().port);
+});
+
